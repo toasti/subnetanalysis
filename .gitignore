@@ -1,4 +1,4 @@
-data/user_subreddit.csv
+data/*user_subreddit.csv
 data/RC*
 
 ##############

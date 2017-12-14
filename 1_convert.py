@@ -1,10 +1,11 @@
 # reads the reddit comment data dump line by line and creates a new adjacency list for user->subreddit, writes it and orders it by user
 
 import json
-from subprocess import call
+import sys
+import shlex, subprocess
 
-dump_file = "data/sample_data.json"
-adj_file = "data/user_subreddit.csv"
+dump_file = sys.argv[1]
+adj_file = sys.argv[1].split('.')[0]+"_user_subreddit.csv"
 
 
 bunchsize = 1000000    # write less often
@@ -33,8 +34,10 @@ with open(dump_file, "r") as r, open(adj_file, "w") as w:
 
 print("### sorting...")
 
-call('./convert_sort.sh')      # use unix sort because it's faster than doing it in python
+# use unix sort because it's faster than doing it in python
+cmd = "./convert_sort.sh " +adj_file
+args = shlex.split(cmd)
+p = subprocess.Popen(args)
 
 print("### done!")
-
-# finished
+print("### wrote file "+adj_file)
