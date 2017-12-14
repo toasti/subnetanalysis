@@ -3,6 +3,9 @@
 import json
 import sys
 import shlex, subprocess
+import time
+
+startTime = time.time()
 
 dump_file = sys.argv[1]
 adj_file = sys.argv[1].split('.')[0]+".user_subreddit.csv"
@@ -39,5 +42,7 @@ cmd = "./convert_sort.sh " +adj_file
 args = shlex.split(cmd)
 p = subprocess.Popen(args)
 
+startTime = time.time() - startTime
 print("### done!")
 print("### wrote file "+adj_file)
+print("### elapsed time:", startTime, "sec")
