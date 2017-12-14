@@ -5,7 +5,7 @@ import sys
 import shlex, subprocess
 
 dump_file = sys.argv[1]
-adj_file = sys.argv[1].split('.')[0]+"_user_subreddit.csv"
+adj_file = sys.argv[1].split('.')[0]+".user_subreddit.csv"
 
 
 bunchsize = 1000000    # write less often
